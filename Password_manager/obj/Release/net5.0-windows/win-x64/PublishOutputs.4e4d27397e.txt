@@ -1,0 +1,13 @@
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\Password_manager.pdb
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\clrcompression.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\clrjit.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\coreclr.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\mscordaccore.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\D3DCompiler_47_cor3.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\PenImc_cor3.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\PresentationNative_cor3.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\vcruntime140_cor3.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\wpfgfx_cor3.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\sni.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\SQLite.Interop.dll
+C:\Users\Praca\Desktop\Publikacja\Publikacja3\Password_manager.exe

@@ -1,0 +1,192 @@
+﻿<Window x:Class="Password_manager.MainWindow"        
+        Closing="Window_Closed"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:local="clr-namespace:Password_manager"
+        Title="MainWindow" Height="600" Width="750" 
+        MinHeight="50" MinWidth="50"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" AllowsTransparency="True"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" >
+    
+    <!-- Podłączenie styli -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Style/Buttons.xaml" />
+                <ResourceDictionary Source="/Style/CheckBoxs.xaml" />
+                <ResourceDictionary Source="/Style/Slider.xaml" />
+                <ResourceDictionary Source="/Style/TextBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!--#region Główny Grid -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!--#region Górny pasek-->
+        <!--Kolor tła-->
+        <Border   Background="#202225" Grid.Row="0" Grid.ColumnSpan="3" BorderThickness="0"  Padding="0">
+            <DockPanel>
+                <!-- Nazwa aplikacji -->
+                <StackPanel  Background="#202225"  Orientation="Horizontal" Margin="0">
+                    <Label Content="Password Manager" Foreground="#72767D" HorizontalAlignment="Left"/>
+                </StackPanel>
+                <!-- Przyciski kontroli okna (min, max, exit) -->
+                <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0" Height="25">
+                    <!-- Minimalizacja -->
+                    <Button Width="25" Height="25" Style="{StaticResource Button_MaxAndMin}" Click="Button_Minimalization">
+                        <Button.Content >
+                            <Image Source="/Icons/IconGlyphMinus.png"/>
+                        </Button.Content>
+                    </Button>
+                    <!-- Maksymalizacja -->
+                    <Button Width="25" Height="25" Style="{StaticResource Button_MaxAndMin}" Click="Button_Maximization" >
+                        <Button.Content>
+                            <Image Source="/Icons/IconGlyphMaxWindow.png"/>
+                        </Button.Content>
+                    </Button>
+                    <!-- Wyłączenie -->
+                    <Button x:Name="Exit" Width="25" Height="25" Style="{StaticResource Button_Exit}" Click="Button_Click">
+                        <Button.Content>
+                            <Image Source="/Icons/IconGlyphExit.png"/>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+        <!--#endregion -->
+        
+        <!-- Główa ramka -->
+        <DockPanel Grid.Column="0" Grid.Row="2" Panel.ZIndex="20"  >
+            <Frame  Name="loginFrame"  Panel.ZIndex="20" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
+        </DockPanel>
+
+        <!--#region Drugi pasek od góry -->
+        <!-- Grid elementów -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition  Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="74*"/>
+            </Grid.RowDefinitions>
+
+            
+        
+            <!--Kolor tła-->
+            <Border  Background="#36393F" Grid.Row="0" Grid.ColumnSpan="3" Panel.ZIndex="10">
+            <!-- Cień pod paskiem -->
+            <Border.Effect >
+                <DropShadowEffect Color="#000000" Direction="-100" BlurRadius="10" Opacity="0.2"   />
+            </Border.Effect>
+            <DockPanel >
+
+                <!--Informacyjny punkt która tabela jest otwarta-->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image x:Name="InformativeImage" Source="/IconGlyphWeb.png"  Margin="4" />
+                    <Label x:Name="InformativeLabel" Content="Web" FontSize="16" Foreground="#FFFFFF" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Pasek od szukania -->
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Background="#36393F" Margin="5" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <!-- Pole do szukania -->
+                    <TextBox x:Name="SearchBox" Tag="Search" Style="{StaticResource TextBox_DataInput_Search}"   KeyDown="SearchBox_KeyDown"/>
+                    <!-- Przycisk szukania -->
+                    <Button  Width="20" Height="22" Background="#2B2D32" BorderThickness="0" Click="Search" >
+                        <Button.Content >
+                            <Image Source="/Icons/IconGlyphLoupe.png" />
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+    <!--#endregion-->
+            
+        <!--#region Zarządzania tabelami -->
+            <!-- Grid -->
+        <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            
+
+            <!--Kolor tła-->
+            <Border Grid.RowSpan="5" Grid.Column="0" Background="#202225" />
+
+
+                <!-- Wizualna informacja która tabela jest wybrana -->
+                <Ellipse x:Name="FirstCircle" Fill="#ffffff" Height="35" Margin="-5,0,5,0" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Opacity="1" />
+                <Ellipse x:Name="SecoundCircle" Fill="#ffffff" Height="35" Margin="-5,0,5,0" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Opacity="0" />
+
+                <!-- Zmiana tabeli -->
+            <!-- Web -->
+            <Border Background="#2F3136" Grid.RowSpan="5" Grid.Column="1"  Margin="0" />
+                <RadioButton   Grid.Row="0" Grid.Column="1"  Style="{StaticResource ToggleButton_Chose2}"  x:Name="Web" GroupName="Select" IsChecked="True" Click="Button_LoadTable" Mouse.MouseEnter="RaddioButtonMouseEnter" MouseLeave="RaddioButtonMouseLeave" >
+                <Image Source="/Icons/IconGlyphWeb.png"  />
+                </RadioButton>
+                <!-- App -->
+                <RadioButton Grid.Row="1" Grid.Column="1"   Style="{StaticResource ToggleButton_Chose2}" x:Name="App" GroupName="Select" IsChecked="False" Click="Button_LoadTable" Mouse.MouseEnter="RaddioButtonMouseEnter" MouseLeave="RaddioButtonMouseLeave">
+                <Image Source="/Icons/IconGlyphDesktop.png"  />
+            </RadioButton>
+            <Border/>
+        </Grid>
+<!--#endregion-->
+            
+        <!--#region Wybór strony / aplikacji -->
+            <!-- kolor tła -->
+        <Border Grid.Row="0" Background="#36393F" Margin="59,39,344,-1" Grid.ColumnSpan="3" Grid.RowSpan="3" >
+           
+            <!--Grid wyboru strony / aplikacji -->           
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                    <!--Umożliwia scrollowanie wyników-->
+                    <ScrollViewer  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" >
+                        <!-- Główny StackPanel dla elementów z bazy -->
+                    <StackPanel   x:Name="StackPanelSide" x:FieldModifier="public" Grid.Row="0" Background="#36393F"  >                       
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!--Przycisk dodanie strony / aplikacji -->
+                <RadioButton  Style="{StaticResource ToggleButton_Chose}" GroupName="Side" Grid.Row="1" HorizontalAlignment="Right" Margin="5,0" Width="30" Height="30" Click="Button_AddData" Background="Transparent">
+                    <RadioButton.Content>
+                        <Image Source="/Icons/IconGlyphPlus.png" Width="30" Height="30" Margin="0,0,0,10" />
+                    </RadioButton.Content>
+                </RadioButton>
+            </Grid>
+        </Border>
+         <!--#endregion-->
+            
+        <!--#region Wyświetlenie wyniku (pełnych danych z bazy / pole dodawania nowych danych do bazy)-->
+        <Border Grid.Row="1" Grid.Column="2" Background="#2F3136"  Panel.ZIndex="20" Grid.RowSpan="2">
+            <Frame x:Name="SideAddReadFrame" Grid.Row="2" Grid.Column="3" Background="#2F3136" NavigationUIVisibility="Hidden"  VerticalContentAlignment="Center" VerticalAlignment="Center" />
+        </Border>
+    <!--#endregion-->
+    </Grid>
+    </Grid>
+    <!--#endregion -->
+</Window>

@@ -1,0 +1,4 @@
+C:\Users\Dawid\Desktop\Publikacje\Password Manager\Password_manager.pdb
+C:\Users\Dawid\Desktop\Publikacje\Password Manager\sni.dll
+C:\Users\Dawid\Desktop\Publikacje\Password Manager\SQLite.Interop.dll
+C:\Users\Dawid\Desktop\Publikacje\Password Manager\Password_manager.exe

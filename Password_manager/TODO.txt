@@ -1,0 +1,17 @@
+﻿
+-poprawić by usnąć dane należy bardziej przeciągnąć a nie tylko delikatnie.
+
+
+Bug
+-gdy tekst w radioButtonie będzie zadługi i się w niego kliknie przesunie się przycisk by zobaczyć ostatni wyraz w lini.
+-gdy wyłączy się aplikacje w oknie rejestracji baza zostaje utworzona i nie można się do niej zalogować przy następnym uruchomieniu
+-przy usuwaniu większej ilości recrodów z bazy aplikacja crashuje
+
+
+Do ogarniecia:
+DeleteRecords - ogarnąć zależności przesuwania, generalmnei jak to działa
+DecryptionAndEncryption - ogarnąć jak szyfrowane i rozszyfrowane są pliki
+ToggleButtonProperites - zrozumieć co tam właściwie się dzieje. 
+
+Dodatkowe rzeczy:
+Sprawdzanie czy coś co zostało dododane nie jest duplikatem.
